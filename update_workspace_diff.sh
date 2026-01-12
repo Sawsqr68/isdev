@@ -105,3 +105,25 @@ RsyncEnvironment ${INSTALLED} ${REPO} --dry-run
 CheckDiff
 
 ConfirmExecution
+name: "CodeQL"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    # تفعيل الفحص على طلبات السحب (Pull Requests)
+    branches:
+      - main
+jobs:
+  analyze:
+    name: "Analyze"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+      - name: "Set up CodeQL"
+        uses: github/codeql-action/init@v2
+        with:
+          languages: "python, javascript" # يمكن التعديل حسب لغة المشروع
+      - name: "Perform Code Scanning"
+        uses: github/codeql-action/analyze@v2
