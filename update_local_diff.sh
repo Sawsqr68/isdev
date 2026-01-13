@@ -1,5 +1,13 @@
 #!/bin/bash
-
+on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      personal_access_token:
+        required: true
 INSTALLED=/c/oit/${BYOD}/`/usr/local/bin/coursegit`
 #INSTALLED_VSC=/c/oit/${BYOD}/`/usr/local/bin/coursevscode`/data/appdata/Code/User/settings.json
 INSTALLED_VSC=/c/oit/${BYOD}/`/usr/local/bin/coursevscode`/data/user-data/User/settings.json
